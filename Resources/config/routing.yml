@@ -1,3 +1,0 @@
-pieper_storee_homepage:
-    path:     /
-    defaults: { _controller: PieperStoreeClientBundle:Default:index }

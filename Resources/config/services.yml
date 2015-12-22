@@ -1,4 +1,0 @@
-services:
-#    pieper_storee.example:
-#        class: Pieper\StoreeClientBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

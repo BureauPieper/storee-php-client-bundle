@@ -1,6 +1,6 @@
 <?php
 
-namespace Pieper\StoreeClientBundle\Tests\Controller;
+namespace Pieper\StoreeBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

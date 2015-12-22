@@ -1,20 +1,20 @@
 {
-    "name": "bureaupieper/storee-php-client-bundle",
+    "name": "Bureaupieper/storee-php-client-bundle",
     "description": "Symfony bundle for the Store-E API client.",
     "autoload": {
-        "psr-4": { "BureauPieper\\StoreeClientBundle\\": "" }
+        "psr-4": { "Bureaupieper\\StoreeBundle\\": "" }
     },
     "require": {
         "php": ">=5.4",
         "symfony/dependency-injection" : "~2.7",
         "symfony/config" : "~2.7",
-        "bureaupieper/storee-php-client": "dev-master"
+        "Bureaupieper/storee-php-client": "dev-master"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Piet Bijl",
-            "email": "piet@bureaupieper.nl"
+            "email": "piet@Bureaupieper.nl"
         }
     ]
 }
