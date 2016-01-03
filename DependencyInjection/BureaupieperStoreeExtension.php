@@ -3,6 +3,8 @@
 namespace Bureaupieper\StoreeBundle\DependencyInjection;
 
 use Bureaupieper\StoreeBundle\DependencyInjection\Compiler\TestCompilerPass;
+use Bureaupieper\StoreeClient\Client\Config;
+use Bureaupieper\StoreeClient\Resources\ConfigTree;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Definition;
@@ -28,29 +30,43 @@ class BureaupieperStoreeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
 //        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-//        $loader->load('parameters.yml');
 //        $loader->load('services.yml');
 
         $logger = null;
         if ($config['logs']['enabled'] && $config['logs']['service']) {
             $logger = new Reference($config['logs']['service']);
         }
-        unset($config['logs']['service']);
 
         $cacheDriver = null;
         if ($config['cache']['enabled'] && $config['cache']['service']) {
             $cacheDriver = new Reference($config['cache']['service']);
         }
-        unset($config['cache']['service']);
 
         $guzzle = null;
         if (isset($config['guzzle_service'])) {
             $guzzle = $container->getDefinition($config['guzzle_service']);
         }
-        unset($config['guzzle']);
+
+        // Remove the values for childNodes that can be enabled which are set to false by the processor.
+        // @see https://github.com/symfony/symfony/issues/17153
+        if (!$config['logs']['default_driver']['mail']['enabled']) {
+            unset($config['logs']['default_driver']['mail']);
+        }
+
+        /**
+         * Standalone client also uses the symfony/config component
+         */
+        $tree = new Definition();
+        $tree->setClass('Symfony\Component\Config\Definition\Builder\TreeBuilder');
+        $tree->setFactory('Bureaupieper\StoreeClient\Resources\ConfigTree::get');
+        $tree->setArguments(['symfony']);
+
+        $def = new Definition();
+        $def->setClass('Bureaupieper\StoreeClient\Client\Config');
+        $def->setArguments([$config, $tree]);
 
         $client = new Definition('Bureaupieper\StoreeClient\Client', [
-            $config,
+            $def,
             $guzzle,
             $cacheDriver,
             $logger

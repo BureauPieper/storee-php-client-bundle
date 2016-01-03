@@ -1,0 +1,4 @@
+services:
+    bureaupieper.storee-php-client.config:
+        class: Bureaupieper\StoreeClient\Client\Config
+        shared: false

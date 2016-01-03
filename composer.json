@@ -5,9 +5,8 @@
         "psr-4": { "Bureaupieper\\StoreeBundle\\": "" }
     },
     "require": {
-        "php": ">=5.4",
-        "symfony/dependency-injection" : "~2.7",
-        "symfony/config" : "~2.7",
+        "php": "~5.5",
+
         "Bureaupieper/storee-php-client": "dev-master"
     },
     "license": "MIT",
