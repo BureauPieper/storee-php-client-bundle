@@ -6,8 +6,7 @@
     },
     "require": {
         "php": "~5.5",
-
-        "Bureaupieper/storee-php-client": "dev-master"
+        "bureaupieper/storee-php-client": "dev-master"
     },
     "license": "MIT",
     "authors": [
