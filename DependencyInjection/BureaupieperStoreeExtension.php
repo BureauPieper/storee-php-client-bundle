@@ -71,6 +71,9 @@ class BureaupieperStoreeExtension extends Extension
             $cacheDriver,
             $logger
         ]);
+        $client->addMethodCall('setDebug', [$container->getParameter('kernel.debug')]);
+
         $container->setDefinition('bureaupieper_storee.client', $client);
     }
 }
+
