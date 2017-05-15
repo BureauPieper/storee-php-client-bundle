@@ -5,8 +5,8 @@
         "psr-4": { "Bureaupieper\\StoreeBundle\\": "" }
     },
     "require": {
-        "php": "~5.5",
-        "bureaupieper/storee-php-client": "^1.0.0"
+        "php": ">=5.5",
+        "bureaupieper/storee-php-client": "^1"
     },
     "license": "MIT",
     "authors": [
